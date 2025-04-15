@@ -4,3 +4,5 @@ export interface Constituent {
   address: string;
   signUpDate: Date;
 }
+
+export type ConstituentPreview = Omit<Constituent, "signUpDate">;
