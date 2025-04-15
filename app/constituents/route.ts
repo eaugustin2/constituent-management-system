@@ -1,6 +1,7 @@
 import { constituentStore } from "@/lib/store";
-import { Constituent } from "@/types/constituents";
+import { Constituent, ConstituentInput } from "@/types/constituents";
 import { NextRequest, NextResponse } from "next/server";
+import { ConstituentInputSchema } from "./validator";
 
 export const GET = () => {
   if (constituentStore.size == 0) {
@@ -20,13 +21,26 @@ export const GET = () => {
 };
 
 export const POST = async (req: NextRequest) => {
-  //TODO: Validate incoming object
+  const constituentInput: ConstituentInput = await req.json();
 
-  const consituent: Constituent = await req.json();
+  //validation to make sure object is valid
+  const parseResult = await ConstituentInputSchema.safeParse(constituentInput);
 
-  consituent.signUpDate = new Date();
+  if (!parseResult.success) {
+    return NextResponse.json(
+      {
+        error: "Improper data, please submit proper Constituent data",
+      },
+      { status: 500 }
+    );
+  }
 
-  constituentStore.set(consituent.email, consituent);
+  const newConsituent: Constituent = {
+    ...parseResult.data,
+    signUpDate: new Date(),
+  };
+
+  constituentStore.set(newConsituent.email, newConsituent);
 
   return NextResponse.json(
     { success: "Constituent has been created!" },

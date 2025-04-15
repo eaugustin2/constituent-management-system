@@ -5,4 +5,4 @@ export interface Constituent {
   signUpDate: Date;
 }
 
-export type ConstituentPreview = Omit<Constituent, "signUpDate">;
+export type ConstituentInput = Omit<Constituent, "signUpDate">;
