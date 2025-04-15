@@ -1,4 +1,4 @@
-export interface Constituents {
+export interface Constituent {
   email: string;
   name: string;
   address: string;
