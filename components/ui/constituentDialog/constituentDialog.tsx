@@ -29,6 +29,11 @@ export const ConstituentDialog = () => {
 
   const handleSubmit = async () => {
     console.log("inside handleSubmit");
+
+    if (!email || !name || !address) {
+      toast.error("Please make sure to fill all fields.");
+      return;
+    }
     const newConstituent: ConstituentInput = {
       email,
       address,
