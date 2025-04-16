@@ -2,6 +2,27 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Please have Node and npm to run this project
+
+If you do not have/do not want to install the above, you can use docker by running the command:
+
+```bash
+docker-compose up --build
+```
+
+This project uses:
+
+- Next.js
+- Zod
+- shadcn
+- tailwind
+
+Install any necessary dependencies:
+
+```bash
+npm install
+```
+
 To run the development server:
 
 ```bash
