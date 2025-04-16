@@ -8,6 +8,15 @@
   margin-right: 30vw;
 }
 
+.headingContainer {
+  margin: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .card {
   background-color: white;
   padding: 48px;

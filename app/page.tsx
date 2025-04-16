@@ -1,4 +1,6 @@
+import { DataTable } from "@/components/ui/data-table";
 import styles from "./page.module.css";
+import { columns } from "@/components/columns";
 
 const Home = async () => {
   const res = await fetch("http://localhost:3000/constituents");
@@ -9,10 +11,12 @@ const Home = async () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2>Constituent Management System</h2>
+        <div className={styles.headingContainer}>
+          <h2 className={styles.heading}>Constituent Management System</h2>
+        </div>
         <div className={styles.cardBody}>
           {constituents.length > 0 ? (
-            <>constituents</>
+            <DataTable columns={columns} data={constituents} />
           ) : (
             <>There are no constituents</>
           )}
