@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +14,52 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Please use [http://localhost:3000](http://localhost:3000) to access UI or use for accessing routes below.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project consists of 5 main Routes:
 
-## Learn More
+1. List all the constituents in the system:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+GET constituents/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Submit a new constituent:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+POST constituents/
+```
 
-## Deploy on Vercel
+This request needs a req.body object with the following information:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+{
+  email: string;
+  name: string;
+  address: string;
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Any other objects of submission will recieve an error
+
+3. Export a csv File:
+
+```bash
+GET constituents/export/
+```
+
+4. Main UI Page:
+
+```bash
+http://localhost:3000/
+```
+
+5. Seeding Example Data:
+
+```bash
+POST /constituents/seed/[[count]]
+```
+
+This route take in an optional count for however many constituent objects you'd like
