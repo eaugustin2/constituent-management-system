@@ -1,6 +1,7 @@
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable } from "@/components/ui/dataTable/data-table";
 import styles from "./page.module.css";
 import { columns } from "@/components/columns";
+import { ConstituentDialog } from "@/components/ui/constituentDialog/constituentDialog";
 
 const Home = async () => {
   const res = await fetch("http://localhost:3000/constituents");
@@ -11,6 +12,7 @@ const Home = async () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
+        <ConstituentDialog />
         <div className={styles.headingContainer}>
           <h2 className={styles.heading}>Constituent Management System</h2>
         </div>

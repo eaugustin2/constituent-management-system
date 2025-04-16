@@ -22,5 +22,10 @@ export const GET = () => {
   const csvParser = new Parser();
   const csv = csvParser.parse(constituents);
 
-  return new NextResponse(csv);
+  return new NextResponse(csv, {
+    headers: {
+      "Content-Type": "text/csv",
+      "Content-Disposition": 'attachment; filename="constituents.csv"',
+    },
+  });
 };

@@ -15,6 +15,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { FileDown } from "lucide-react";
+import { Button } from "../button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,9 +33,40 @@ export const DataTable = <TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const handleExport = async () => {
+    const res = await fetch("http://localhost:3000/constituents/export");
+    const blob = await res.blob();
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "constituents.csv";
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
-    <div className="rounded-md border">
-      <Table>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "end",
+          width: "100%",
+          margin: "10px",
+        }}
+      >
+        <Button
+          variant="secondary"
+          onClick={handleExport}
+          style={{ cursor: "pointer" }}
+        >
+          <FileDown />
+          export
+        </Button>
+      </div>
+      <Table className="rounded-md border">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
