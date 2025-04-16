@@ -4,12 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { ConstituentInputSchema } from "./validator";
 
 export const GET = () => {
-  if (constituentStore.size == 0) {
-    return NextResponse.json(
-      { error: "There are no constituents" },
-      { status: 500 }
-    );
-  }
+  // if (constituentStore.size == 0) {
+  //   return NextResponse.json(
+  //     { error: "There are no constituents" },
+  //     { status: 500 }
+  //   );
+  // }
 
   const constituents: Constituent[] = [];
 
